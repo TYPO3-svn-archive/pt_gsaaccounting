@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for hooks &quot;tx_ptgsaaccounting&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="fl_overview_creditBalance">Credit Balance</label>
+			<label index="fl_overview_creditBalanceInfo">You have a credit balance of</label>
+			<label index="fl_overview_accountCreditBalance">Encash credit balance</label>
+			<label index="fl_overview_payment">Payment amount</label>
+			<label index="fl_overview_creditBalanceRest">Remaining credit balance</label>
+			<label index="bl_overview_notAccountCreditBalance">Do not encash</label>
+			<label index="bl_overview_doAccountCreditBalance">Encash</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="fl_overview_creditBalance">Guthaben</label>
+			<label index="fl_overview_creditBalanceInfo">Sie haben ein Guthaben von</label>
+			<label index="fl_overview_accountCreditBalance">Guthaben einlösen</label>
+			<label index="fl_overview_payment">Zahlungsbetrag</label>
+			<label index="fl_overview_creditBalanceRest">Restguthaben</label>
+			<label index="bl_overview_notAccountCreditBalance">Nicht einlösen</label>
+			<label index="bl_overview_doAccountCreditBalance">Einlösen</label>
+		</languageKey>
+	</data>
+</T3locallang>

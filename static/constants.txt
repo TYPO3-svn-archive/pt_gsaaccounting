@@ -1,0 +1,101 @@
+/* 
+possible subcategories: 
+----------------------
+enable      Used for options that enable or disable primary functions of a template
+dims        Dimensions of all kinds; pixels, widths, heights of images, frames, cells and so on.
+file        Files like background images, fonts and so on. Other options related to the file may also enter
+typo        Typography and related constants
+color       Color setup. Many colors will be found with related options in other categories though.
+links       Links: Targets typically
+language    Language specific options.
+Subcategories based on the default content elements:
+cheader,cheader_g,ctext,ctextpic,cimage,cbullets,ctable,cuploads,cmultimedia,cmailform,csearch,clogin,csplash,cmenu,cshortcut,clist,cscript,chtml
+These are all categories reserved for options that relate to content rendering for each type of tt_content element. See static_template "content (default)" and "styles.content (default)" for examples.
+
+possible data types (type=):
+---------------------------
+int [low-high]              integer, opt. in range "low" to "high"
+int+                        positive integer
+offset [L1,L2,...L6]        comma-separated integers. Default is "x,y", but as comma separated parameters in brackets you can specify up to 6 labels being comma separated! If you wish to omit one of the last 4 fields, just don't enter a label for that element.
+color                       HTML color
+wrap                        HTML-code that is wrapped around some content.
+options [item1,item2,...]   Selectbox with values/labels item1, item2 etc. Commaseparated. Split by "=" also and in that case, first part is label, second is value
+boolean [truevalue]         Boolean, opt. you can define the value of "true", def.=1
+comment                     Boolean, checked= "", not-checked = "#".
+file [ext-list/IMAGE_EXT]   Selectorbox with resources. Opt. list allowed extensions (no space in list!), eg. "[ttf]" or "[txt,html,htm]". You can also enter "[IMAGE_EXT]" in which case the default image-extensions are listed. (used for datatype "imgResouce")
+string (the default)        Just a string value
+*/ 
+
+
+// Configuration for GSA Accounting Extension, accesible through BE constant editor
+plugin.tx_ptgsaaccounting {
+    
+    
+  // ***** GENERAL EXTENSION SETTINGS *****
+    
+    // Enable Features
+    
+    # cat=pt_gsaaccounting::general/enable/010; type=string; label=Accounting Data Sysfolder PID: TYPO3 PID (Page ID, no alias here!) of your accounting data sysfolder.
+    accountingDataSysfolderPid = 
+
+    # cat=pt_gsaaccounting::general/enable/015; type=int+; label=Shop operator FE group ID: ID of the frontend usergroup with shop operator rights (DB table fe_groups, Field uid). If you don't have an appropriate group, please create one with the name 'Shop operator' and set its uid here. 
+    shopOperatorGroupUid =
+
+    # cat=pt_gsaaccounting::general/enable/018; type=int+; label=Book payment FE group ID: ID of the frontend usergroup with rights to book invoices as payed in the GSA Database (DB table fe_groups, Field uid). If you don't have an appropriate group, please create one with the name 'bookPayment' and set its uid here. 
+    bookPaymentGroupUid =
+
+    # cat=pt_gsaaccounting::general/enable/100; type=string; label=Shop operator -- Name: Name of BankAcoount Holder of the shop operator. This is required for generating DTAAUS.
+    shopOperatorName = 
+    
+    # cat=pt_gsaaccounting::general/enable/105; type=string; label=Shop operator -- Bankname: Bankname of the shop operator. This is required for generating DTAAUS.
+    shopOperatorBankName = 
+
+    # cat=pt_gsaaccounting::general/enable/110; type=string; label=Shop operator -- BankCode: BankCode of the shop operator. This is required for generating DTAAUS.
+    shopOperatorBankCode = 
+    
+    # cat=pt_gsaaccounting::general/enable/120; type=string; label=Shop operator -- BankAccountNo: Bank Account No of the shop operator. This is required for generating DTAAUS.
+    shopOperatorBankAccountNo = 
+    
+    # cat=pt_gsaaccounting::general/enable/130; type=string; label=Shop operator -- Finance Account: Finance Account No of the shop operator as defined id Datei.ini. This is required booking payments.
+    shopOperatorFinanceAccount = 
+
+    # cat=pt_gsaaccounting::general/enable/150; type=string; label=Admin Invoice Page: Identifier (PID or alias) of the TYPO3 page where you've integrated the "Admin Invoice Page" if there is one. (check if already needed)
+    adminInvoicePage = 
+    
+    # cat=pt_gsaaccounting::general/enable/160; type=string; label=Invoice Number Paramname: Parametername of the Invoice Number for the Admin Invoice Page. Has to be specified to link direct to Admin Page of Invoice. (check if already needed)
+    adminInvoiceNumberParamname = 
+    
+    # cat=pt_gsaaccounting::general/enable/170; type=string; label=Name of send Button: Name of the send Button for the Admin Invoice Page. Has to be specified to link direct to Admin Page of Invoice. (check if already needed)
+    adminInvoiceSendButton = 
+    
+    
+    // ***** PAYMENT SETTINGS *******
+	# cat=pt_gsaaccounting::payment/enable/010; type=int+; label=Payment Page: PID of the page with a payment processor. (pt_tools_payment session is handed)
+    paymentPid = 
+	
+    
+    // ***** SMARTY TEMPLATE SETTINGS *****
+    
+    
+    # cat=pt_gsaaccounting::file/010; type=file[html,htm,tmpl,tpl,txt]; label=search Outstansting Items: The template file to be used for search Outstansting Items of pi1 (template for the Smarty templating engine).
+    templateFileSearchForm = EXT:pt_gsaaccounting/res/smarty_tpl/searchForm.tpl.html
+    
+    # cat=pt_gsaaccounting::file/020; type=file[html,htm,tmpl,tpl,txt]; label=Outstanding Items: The template file to be used for the display of outstandingItems(template for the Smarty templating engine).
+	templateFileOutstandingItemList = EXT:pt_gsaaccounting/res/smarty_tpl/outstandingItemList.tpl.html
+
+    # cat=pt_gsaaccounting::file/025; type=file[html,htm,tmpl,tpl,txt]; label=MyAccount: The template file to be used for the display of MyAccount(template for the Smarty templating engine).
+	templateFileMyAccount = EXT:pt_gsaaccounting/res/smarty_tpl/myAccount.tpl.html
+
+    # cat=pt_gsaaccounting::file/030; type=file[html,htm,tmpl,tpl,txt]; label=Outstanding Positions: The template file to be used for the display of outstanding Positions for one item(template for the Smarty templating engine).
+	templateFileOutstandingPositions = EXT:pt_gsaaccounting/res/smarty_tpl/outstandingPositions.tpl.html
+
+  // ***** CSS SETTINGS *****
+
+    # cat=pt_gsaaccounting::file/110; type=file[css]; label=Css file: The file with css definitions for smarty form handling.
+	cssFile = EXT:pt_gsaaccounting/res/css/tx_ptgsaaccounting.css
+	
+    # cat=pt_gsaaccounting::file/120; type=file[js]; label=JS file Outstanding Items: The file with javascript Code for the Outstanding Item List.
+	jsOutstandingItems = EXT:pt_gsaaccounting/res/js/outstandingsSort.js
+    
+    
+}

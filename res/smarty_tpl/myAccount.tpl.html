@@ -1,0 +1,225 @@
+{* Smarty *}
+{* Detail template for pt_gsaaccounting "Show myAccount for Customers"; Author: Dorit Rottner <rottner@punkt.de>, since 2008-01-12 *}
+<br />
+<div id="rowhead" class="formRow">
+  <div class="tx-pt_gsaaccounting_content">
+  	<div id="rowhead" class="formRow">
+		<div class="tx-ptgsaaccounting-col1">
+			<span class="tx-ptgsaaccounting-txt2">{$fl_accountBalance}:</span> 
+		</div>
+		<div class="tx-ptgsaaccounting-col2">
+			<span class="tx-ptgsaaccounting-txt3">{$fv_accountBalance}</span>
+		</div>
+	</div>
+{if $fv_creditBalance <> 0}
+  	<div id="rowhead" class="formRow">
+		<div class="tx-ptgsaaccounting-col1">
+			<span class="tx-ptgsaaccounting-txt2">{$fl_creditBalance}:</span> 
+		</div>
+		<div class="tx-ptgsaaccounting-col2">
+			<span class="tx-ptgsaaccounting-txt3">{$fv_creditBalance}</span>
+		</div>
+	</div>
+{/if}
+{if $cond_invoices}
+  	<div id="rowhead" class="formRow">
+		<div class="tx-ptgsaaccounting-col1">
+			<span class="tx-ptgsaaccounting-txt2">{$fl_outstandingItems}:</span>  
+		</div>
+		<div class="tx-ptgsaaccounting-col2">
+			<span class="tx-ptgsaaccounting-txt3">{$fv_outstandingAmount}</span>
+		</div>
+	</div>
+{if $cond_pmInvoice}
+  	<div id="rowhead" class="formRow">
+<span class="tx-ptgsaaccounting-txt">{$fl_note_invoice1} {$fv_lastPaymentDateInvoice} {$fl_note_invoice2}</span>
+</div>
+{/if}
+{if $cond_pmDebit}
+  	<div id="rowhead" class="formRow">
+<span class="tx-ptgsaaccounting-txt">{$fl_note_debit1} {$fv_lastPaymentDateDebit} {$fl_note_debit2}</span>
+</div>
+{/if}
+{/if}
+{if $cond_invoices}
+<div id="rowhead" class="formRow">
+	<form name="manage_myAccount" method="post" action="{$fv_action}">
+<br />
+{if $fv_creditBalance > 0 && $fv_outstandingAmount >0}
+		<input type="submit" name="{$tx_prefix}[process_creditBalance]" value="{$bl_book}" id="doBook"/>&nbsp;&nbsp;&nbsp;
+		<input type = "hidden" name="bookPrompt" value="{$fl_bookPrompt}">
+		<input type = "hidden" name="{$tx_prefix}[creditBalance]" value="{$fv_creditBalance}">
+{/if}
+{if $cond_showButtons}
+{if $cond_outstandingItems}
+        <input type="submit" name="{$tx_prefix}[show_allAccountData]" value="{$bl_allAccountData}" id="showAllAccountData"/>&nbsp;&nbsp;&nbsp;
+{else}
+        <input type="submit" name="{$tx_prefix}[show_outstandingItems]" value="{$bl_outstandingItems}" id="showOutstandingItems"/>&nbsp;&nbsp;&nbsp;
+{/if}
+{/if}
+<br />
+</form>
+</div>
+{/if}
+{if $cond_overpayment}
+ <div id="rowhead" class="formRow">
+<span class="tx-ptgsaaccounting-txt4">{$fl_creditBalanceOverpayment}</span><br /><br />
+<table id="overPayment" class="tx-pt_gsaaccounting-tablenosort" cellspacing="1"> 
+<thead> 
+  <tr> 
+    <th>{$fl_relatedDocNo}</th> 
+    <th>{$fl_overpaymentDate}</th> 
+<!--    <th>{$fl_invoiceDate}</th> --> 
+    <th align="right">{$fl_paymentAmount}</th> 
+<!--   <th align="right">{$fl_overpayment}</th> --> 
+    <th align="right">{$fl_creditBalance}</th> 
+</thead>
+<tbody>
+ {foreach key=docId from=$overpaymentDisplayArr item=row}
+
+<tr {$row.classTr}> 
+		<td>{$fl_relatedDocNo} {$row.invoiceDocNo}</td>
+        {if $row.signedImg!=''}
+        &nbsp;&nbsp;<img src="{$row.signedImg}" alt="" title=""/>
+        {/if}
+<!--  		<td>{$row.invoiceDate}</td> -->
+		<td>{$row.overpaymentDate}</td>
+		<td align="right">{$row.paymentAmount}</td>
+<!--  	<td align="right">{$row.overpayment}</td> -->
+		<td align="right">{$row.creditBalance}</td>
+
+</tr> 
+{/foreach}
+</tbody>
+</table>
+</div>
+
+{/if}
+
+{if $cond_invoices}
+ <div id="rowhead" class="formRow">
+{if $cond_outstandingItems}
+    <span class="tx-ptgsaaccounting-txt4">{$fl_outstandingItems}</span><br /><br />
+{else}
+    <span class="tx-ptgsaaccounting-txt4">{$fl_invoices}</span><br /><br />
+{/if}
+<table id="myAccount" class="tablesorter" cellspacing="0"> 
+<thead> 
+<tr> 
+    <th>{$fl_relatedDocNo}</th> 
+    <th>{$fl_invoiceDate}</th> 
+    <th>{$fl_paymentMethod}</th> 
+    <th>Payment status</th>
+    <th align="right">{$fl_amountGross}</th> 
+</thead> 
+<tbody>
+ {foreach key=docId from=$itemDisplayArr item=row}
+
+<tr {$row.classTr}> 
+		{if $row.relatedDocNoLink!=''}
+		<td><a href="{$row.relatedDocNoLink}">{$row.relatedDocNo}</a></td>
+		{else}
+		<td>{$row.relatedDocNo}</td>
+		{/if}
+        <td>{$row.date}</td>
+		<td>{$row.paymentMethod}</td>
+        <td>{$row.paymentStatus}</td>
+		<td align="right">{$row.amountGross}<br/>
+
+{if $row.continuedCond}
+{foreach key=continuedId from=$row.continuedArr item=subrow}
+<!--  <tr> 
+        <td colspan="1">&nbsp;</td>
+        <td colspan="1">{$subrow.text}</td>
+        <td colspan="1">{$subrow.date}</td>
+        <td align="right">{$subrow.amount}</td>
+</tr>--> 
+		<span class="tx-ptgsaaccounting-col3">{$subrow.text}</span>
+		<span class="tx-ptgsaaccounting-col8">{$subrow.date}</span>
+		{$subrow.amount}<br>
+{/foreach}
+{/if}
+
+{if $row.paymentCond}
+{foreach key=paymentId from=$row.paymentArr item=subrow}
+<!-- <tr> 
+        <td colspan="1">&nbsp;</td>
+		<td colspan="1">{$subrow.paymentText}</td>
+        <td colspan="1">{$subrow.date}</td>
+		<td align="right">{$subrow.amount}</td>
+</tr>--> 
+
+		<span class="tx-ptgsaaccounting-col3">{$subrow.paymentText}</span>
+		<span class="tx-ptgsaaccounting-col8">{$subrow.date}&nbsp;</span>
+		{$subrow.amount}<br>
+{/foreach}
+{/if}
+
+
+{* possible discount *}
+{if $row.cond_discount}
+<!--  
+<tr> 
+</tr> 
+-->
+        <span class="tx-ptgsaaccounting-col3">{$fl_discount}</span>
+        <span class="tx-ptgsaaccounting-col8">&nbsp;</span>
+        {$row.discount}<br>
+{/if}
+
+{* rest Payment *}
+{if $row.cond_restPayment}
+ 
+        <span class="tx-ptgsaaccounting-col3">{$fl_paymentRest}</span> <span class="tx-ptgsaaccounting-col8">&nbsp;</span>
+{if $row.restPaymentAmount > 0}
+        {$row.restPayment}
+{else} 
+        {$row.restPayment}
+{/if}
+{/if}
+
+
+{if $row.overpaymentCond}
+{foreach key=overpaymentId from=$row.overpaymentArr item=subrow}
+<!-- <tr> 
+        <td colspan="1">&nbsp;</td>
+		<td colspan="1">{$subrow.text}</td>
+        <td colspan="1">{$subrow.date}</td>
+		<td align="right">{$subrow.amount}</td>
+</tr>
+ --> 
+		<span class="tx-ptgsaaccounting-col3">{$subrow.text}</span>
+		<span class="tx-ptgsaaccounting-col8">{$subrow.date}</span>
+		{$subrow.amount}<br>
+{/foreach}
+{/if}
+
+</td>
+</tr>
+{/foreach}
+</tbody>
+</table>
+</div>
+{/if}
+{if $cond_invoices}
+<div id="rowhead" class="formRow">
+	<form name="manage_myAccount" method="post" action="{$fv_action}">
+		<br />
+{if $fv_creditBalance > 0 && $fv_outstandingAmount >0}
+		<input type="submit" name="{$tx_prefix}[process_creditBalance]" value="{$bl_book}" id="doBook"/>&nbsp;&nbsp;&nbsp;
+		<input type = "hidden" name="bookPrompt" value="{$fl_bookPrompt}">
+		<input type = "hidden" name="{$tx_prefix}[creditBalance]" value="{$fv_creditBalance}">
+{/if}
+{if $cond_showButtons}
+{if $cond_outstandingItems}
+        <input type="submit" name="{$tx_prefix}[show_allAccountData]" value="{$bl_allAccountData}" id="showAllAccountData"/>&nbsp;&nbsp;&nbsp;
+{else}
+        <input type="submit" name="{$tx_prefix}[show_outstandingItems]" value="{$bl_outstandingItems}" id="showOutstandingItems"/>&nbsp;&nbsp;&nbsp;
+{/if}
+{/if}
+	</form>
+</div>
+{/if}
+
+</div>
+

@@ -1,0 +1,40 @@
+/* 
+possible subcategories: 
+----------------------
+basic	    Extension configuration in Extension Manager
+
+possible data types (type=):
+---------------------------
+int [low-high]		        integer, opt. in range "low" to "high"
+int+  				        positive integer
+offset	[L1,L2,...L6]		comma-separated integers. Default is "x,y", but as comma separated parameters in brackets you can specify up to 6 labels being comma separated! If you wish to omit one of the last 4 fields, just don't enter a label for that element.
+color				        HTML color
+wrap				        HTML-code that is wrapped around some content.
+options [item1,item2,...]	Selectbox with values/labels item1, item2 etc. Commaseparated. Split by "=" also and in that case, first part is label, second is value
+boolean [truevalue]		    Boolean, opt. you can define the value of "true", def.=1
+comment 			        Boolean, checked= "", not-checked = "#".
+file [ext-list/IMAGE_EXT]	Selectorbox with resources. Opt. list allowed extensions (no space in list!), eg. "[ttf]" or "[txt,html,htm]". You can also enter "[IMAGE_EXT]" in which case the default image-extensions are listed. (used for datatype "imgResouce")
+string (the default)	    Just a string value
+*/
+
+
+
+# cat=basic; type=boolean; label=CLI enable logging: Flag whether the CLI script logging should be used. If enabled, cliLogDir has to be set!
+cliEnableLogging = 0
+
+# cat=basic; type=string; label=CLI log output dir (absolute path): _Absolute_ path to the directory for generated logs of the CLI script (Important: don't forget the prefacing and closing slashes "/"). Requires cliEnableLogging to be set.
+cliLogDir = 
+
+# cat=basic; type=string; label=CLI admin email address: Email address for system messages sent from the CLI script.
+cliAdminEmailRecipient = 
+
+# cat=basic; type=boolean; label=CLI quiet mode: Flag for executing the CLI script in quiet mode (uncheck for verbose mode: displays debugging messages while executing the CLI script).
+cliQuietMode = 1
+
+# cat=basic; type=string; label=CLI host name: Name of the host where the CLI script is used. This name is used for identification of the originating host in emails sent from the CLI script.
+cliHostName = 
+
+# cat=basic; type=string; label=Currency code: The ISO three letter currency code specifying the used currency of underlying GSA database (e.g. EUR for Euro, USD for US Dollar). 
+currencyCode = EUR
+
+

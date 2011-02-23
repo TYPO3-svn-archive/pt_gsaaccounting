@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'pt_gsaaccounting'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_ptgsaaccounting_dtabuchrel">GSA Accounting DTABUCH relations</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.gsa_dtabuch_uid">UID of GSA px_DTABUCH (NUMMER)</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.type">Type of booking could be 'Einzug' or 'Abbuchung'</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.bank_code">Bank Code</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.account_no">Account Number</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.account_holder">Account Holder</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.related_doc_no">Document Number in GSA</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.purpose">Additional purpose</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.filename">Name of DTA file</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.transfer_date">Date transfered to bank</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.invoice_date">Invoice date</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.due_date">Due date</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.book_date">actuel date when booking is done</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.gsa_book_date">book date for GSA</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.bank_rejected">Rejected from Bank or Programm</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.reprocess">Reprocess DTA</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.bankaccount_checked">Banc Account checked</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.drop_user">DROP user</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.invoice_ok_gsa">invoice already ok in GSA</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.booking_amount">Amount of invoice </label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.transfer_amount">Amount send to Bank coud be diversify from GSA DTABUCH</label>
+			<label index="tx_ptgsaaccounting_dtabuchrel.diference_amount">Difference between outstanding Payment in GSA and transferAmount in dtabuchrel</label>
+			<label index="tt_content.list_type_pi1">GSA Accounting: Outstanding Items</label>
+			<label index="tt_content.list_type_pi2">GSA Accounting: MyAccount</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance">GSA credit balance relations</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.order_wrapper_uid">Uid of order Wrappe from pt_gsahop</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.gsa_uid">Uid of GSA Customer</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.related_doc_no">Document Number in GSA to account with credit Balance</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.book_date">date when booking is done</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.reserved">amount is reserved for booking</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.booked">amount is allready booked</label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.amount_invoice">Amount of credit balance of current order </label>
+			<label index="tx_ptgsaaccounting_orderCreditBalance.amount_customer">Amount of credit balance of current customer </label>
+            <label index="tx_ptgsaaccounting_paymentModifier">Payment Modifier</label>
+            <label index="tx_ptgsaaccounting_paymentModifier.orderUid">Uid of order Archive from pt_gsahop</label>
+            <label index="tx_ptgsaaccounting_paymentModifier.value">amount od Modifier</label>
+            <label index="tx_ptgsaaccounting_paymentModifier.addDataType">Type of addtional Data</label>
+            <label index="tx_ptgsaaccounting_paymentModifier.addData">addtional Data</label>
+		</languageKey>
+	</data>
+</T3locallang>

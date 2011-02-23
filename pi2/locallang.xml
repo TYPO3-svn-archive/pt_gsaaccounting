@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_ptgsasaccounting_pi2&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="bl_back">Cancel</label>
+			<label index="bl_book">Book outstanding items</label>
+            <label index="bl_allAccountData">Show all invoices</label>
+            <label index="bl_outstandingItems">Show only outstanding items</label>
+			<label index="fl_name">Name</label>
+			<label index="fl_relatedDocNo">Invoice Number</label>
+			<label index="fl_overpaymentDate">Date overpayment</label>
+			<label index="fl_invoiceDate">Date invoice</label>
+			<label index="fl_overpayment">Overpayment</label>
+			<label index="fl_creditBalanceOverpayment">Outstanding redit balance from Overpayment</label>
+			<label index="fl_amountGross">Amount</label>
+			<label index="fl_credit">Credit note</label>
+            <label index="fl_discount">Discount</label>
+			<label index="fl_creditBalance">Credit balance</label>
+			<label index="fl_accountBalance">Current Account Balance</label>
+			<label index="fl_outstandingItems">Outstanding items</label>
+			<label index="fl_invoices">Invoices</label>
+			<label index="fl_paymentRest">Ouststanding amount</label>
+			<label index="fl_paymentAmount">Payment amount</label>
+			<label index="fl_paymentMethod">Payment Method</label>
+			<label index="fl_bookDate">Bookdate for payment</label>
+            <label index="fl_paymentText">Payed</label>
+            <label index="fl_transCredit">Credit Note from</label>
+            <label index="fl_transCancellation">Cancellation from</label>
+            <label index="fl_transInvoice">Invoice from</label>
+			<label index="fl_fromCredit">from credit balance</label>
+			<label index="fl_bookPrompt">Want you really to settle the outstanding items with your credit? </label>
+			<label index="fl_noCredit">No. credited</label>
+			<label index="fl_noToCredit">No. to credit</label>
+			<label index="fl_shipping">Shipping</label>
+			<label index="fl_all">All</label>
+			<label index="fl_note_invoice1">Payment entrances were considered until </label>
+			<label index="fl_note_invoice2">. Later transfers are not considered.</label>
+			<label index="fl_note_debit1">Debits were considered until</label>
+			<label index="fl_note_debit2">.</label>
+            <label index="pm_invoice">bank transfer</label>
+            <label index="pm_debit">Direct Debit</label>
+            <label index="pm_creditcard">Creditcard</label>
+            <label index="pm_unknown">Unknown</label>
+            <label index="err_novalid_customer_no">No valid Customer Number</label>
+            <label index="transaction_ok">Transaction OK</label>
+            <label index="transaction_failed">Transaction FAILED</label>
+            <label index="payed">Payed</label>
+            <label index="not_payed">Not Payed</label>
+            <label index="pay_now">Pay Now</label>
+
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="bl_back">Abbrechen</label>
+			<label index="bl_book">Offene Posten mit Guthaben verrechnen</label>
+            <label index="bl_allAccountData">Alle Rechnungen anzeigen</label>
+            <label index="bl_outstandingItems">Nur Offene Posten anzeigen</label>
+			<label index="fl_relatedDocNo">Rechnungsnummer</label>
+			<label index="fl_name">Name</label>
+			<label index="fl_overpayment">Überzahlung</label>
+			<label index="fl_creditBalanceOverpayment">Offene Guthaben aus Überzahlungen</label>
+			<label index="fl_overpaymentDate">Datum Überzahlung</label>
+			<label index="fl_invoiceDate">Rechnungsdatum</label>
+			<label index="fl_amountGross">Betrag</label>
+            <label index="fl_paymentText">Bezahlt</label>
+			<label index="fl_credit">Gutschrift</label>
+            <label index="fl_discount">Skonto</label>
+			<label index="fl_creditBalance">Guthaben</label>
+			<label index="fl_accountBalance">Aktueller Kontostand</label>
+			<label index="fl_outstandingItems">Offene Posten</label>
+			<label index="fl_invoices">Rechnungen</label>
+			<label index="fl_paymentRest">Noch offen</label>
+			<label index="fl_paymentAmount">Zahlbetrag</label>
+			<label index="fl_paymentMethod">Zahlart</label>
+			<label index="fl_bookDate">Bezahldatum</label>
+			<label index="fl_fromCredit">aus Guthaben</label>
+            <label index="fl_transCredit">Gutschrift vom</label>
+            <label index="fl_transCancellation">Storno vom</label>
+            <label index="fl_transInvoice">Rechnung vom</label>
+			<label index="fl_bookPrompt">Wollen Sie wirklich die offenen Posten mit Ihrem Guthaben verrechnen? </label>
+			<label index="fl_all">Alle</label>
+			<label index="fl_note_invoice1">Es wurden &lt;b&gt;Zahlungseingänge&lt;/b&gt; bis zum </label>
+			<label index="fl_note_invoice2">berücksichtigt. Spätere Überweisungen sind nicht berücksichtigt.</label>
+			<label index="fl_note_debit1">Es wurden &lt;b&gt;Abbuchungen&lt;/b&gt; bis zum </label>
+			<label index="fl_note_debit2">berücksichtigt. </label>
+            <label index="pm_invoice">Rechnung</label>
+            <label index="pm_debit">Abbuchung</label>
+            <label index="pm_creditcard">Kreditkarte</label>
+            <label index="pm_unknown">Unbekannt</label>
+            <label index="err_novalid_customer_no">Keine gültige Kundennummer</label>
+            <label index="transaction_ok">Transaktion OK</label>
+            <label index="transaction_failed">Transaktion fehlgegschlagen</label>
+            <label index="payed">Bezahlt</label>
+            <label index="not_payed">Noch nicht eingegangen</label>
+            <label index="pay_now">Jetzt bezahlen</label>
+		</languageKey>
+	</data>
+</T3locallang>

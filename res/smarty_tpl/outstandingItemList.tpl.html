@@ -1,0 +1,91 @@
+{* Smarty *}
+{* Detail template for pt_gsaaccounting "Show outstanding Items for all Customers"; Author: Dorit Rottner <rottner@punkt.de>, since 2007-03-22 *}
+{if $row.payment_allowed}  
+<br /><br />
+  <div class="tx-pt_gsaaccounting_content">
+<p>
+<span class="tx-ptgsaaccounting-txt">{$fl_note1}</span>
+</p>
+<br /><br />
+</div>
+{/if}
+<form name="manage_form" method="post" action="{$fv_action}">
+<table id="outstandingItems" class="tablesorter" cellspacing="1"> 
+<thead> 
+<tr> 
+    <th>{$fl_name} [{$fl_gsacustomerNo}]</th> 
+    <th>{$fl_date}</th> 
+    <th>{$fl_relatedDocNo}</th> 
+    <th>{$fl_paymentMethod}</th> 
+    <th>{$fl_amountGross}</th> 
+    <th>{$fl_payed}</th> 
+    <th>{$fl_credit}</th> 
+    <th>{$fl_discount}</th> 
+    <th>{$fl_payment}</th> 
+{if $cond_payment_allowed}  
+    <th>{$fl_doPayment}<br></th> 
+{/if}
+    <th>{$fl_doCredit}</th> 
+    <th>{$fl_doCancellation}</th> 
+    <th>{$fl_doCancel}</th> 
+{if $cond_payment_allowed}  
+    <th>{$fl_restok}</th> 
+{/if}
+    <th>&nbsp;</th> 
+</thead> 
+<tbody>
+ {foreach key=docId from=$itemDisplayArr item=row}
+
+<tr {$row.classTr}> 
+        <td>{$row.name} [{$row.gsacustomerNo}]</td>
+        <td>{$row.date}</td>
+        <td>{$row.relatedDocNo}</td>
+        <td>{$row.paymentMethod}</td>
+        <td align="right">{$row.amountGross}</td>
+        <td align="right">{$row.payment}</td>
+        <td align="right">{$row.credit}</td>
+        <td align="right">{$row.discount}</td>
+{if $row.notpayed}
+        <td><input type="text" value="{$row.restPayment}" name="{$tx_prefix}[payment_{$row.idRelatedDocNo}]" size="5"></td>
+    {if $row.payment_allowed}  
+        <td align="center"><input type="radio" name="{$tx_prefix}[bookit_{$row.idRelatedDocNo}]" value="payment"></td>
+    {/if}
+        <td align="center"><input type="radio" name="{$tx_prefix}[bookit_{$row.idRelatedDocNo}]" value="credit"></td>
+        <td align="center"><input type="radio" name="{$tx_prefix}[bookit_{$row.idRelatedDocNo}]" value="cancellation"></td>
+        <td align="center"><input type="radio" name="{$tx_prefix}[bookit_{$row.idRelatedDocNo}]" value="cancel"></td>
+    {if $row.payment_allowed}  
+        <td align="center"><input type="checkbox" name="{$tx_prefix}[restok_{$row.idRelatedDocNo}]" value="1"></td>
+    {/if}
+        <td align="center"><input type="submit" name="{$tx_prefix}[showPosition_{$row.idRelatedDocNo}]" value="{$bl_position}"></td>
+{else}
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    {if $row.payment_allowed}  
+        <td align="center"><input type="checkbox" name="{$tx_prefix}[restok_{$row.idRelatedDocNo}]" value="1"></td>
+    {/if}
+{/if}
+{if $row.notpayed}
+{else}
+{/if}
+</tr> 
+{/foreach}
+
+</tbody>
+</table>
+<br /><br />
+  <div class="tx-pt_gsaaccounting_content">
+    {if $row.payment_allowed}  
+        <span class="tx-ptgsaaccounting-txt"><input type="text" name="tx_ptgsaaccounting_pi1[bookDate]" value="{$fv_bookDate}" size="10">&nbsp;&nbsp;&nbsp;{$fl_bookDate}&nbsp;&nbsp;&nbsp;</span>
+        <span class="tx-ptgsaaccounting-txt"><input type="radio" name="tx_ptgsaaccounting_pi1[all_doAll]" value="payment" onClick="selectAllRadiosValue('payment','tx_ptgsaaccounting_pi1[all_doAll]')";  />{$bl_selectAllPayment}&nbsp;&nbsp;&nbsp;</span>
+    {/if}
+        <span class="tx-ptgsaaccounting-txt"><input type="radio" name="tx_ptgsaaccounting_pi1[all_doAll]" value="credit" onClick="selectAllRadiosValue('credit','tx_ptgsaaccounting_pi1[all_doAll]')";  />{$bl_selectAllCredit}&nbsp;&nbsp;&nbsp;</span>
+        <span class="tx-ptgsaaccounting-txt"><input type="radio" name="tx_ptgsaaccounting_pi1[all_doAll]" value="cancel" onClick="selectAllRadiosValue('cancel','tx_ptgsaaccounting_pi1[all_doAll]')";  />{$bl_selectAllCancel}&nbsp;&nbsp;&nbsp;</span>
+        <br /><br />
+        <input type="submit" name="{$tx_prefix}[book_outstandingItems]" value="{$bl_book}" id="doBook"/>&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="{$tx_prefix}[back_search]" value="{$bl_backSearch}" />&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="{$tx_prefix}[back_outstandingItemList]" value="{$bl_back}" />
+</div> 
+<input type = "hidden" name="bookPrompt" value="{$fl_bookPrompt}">
+</form>

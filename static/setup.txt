@@ -1,0 +1,36 @@
+// all settings assigned like {$plugin.tx_ptgsaaccounting.*} originate from /static/constants.txt
+
+
+// config settings for the extension's resource classes (not FE plugin related)
+config.tx_ptgsaaccounting {
+    accountingDataSysfolderPid = {$plugin.tx_ptgsaaccounting.accountingDataSysfolderPid}
+    shopOperatorName = {$plugin.tx_ptgsaaccounting.shopOperatorName}
+    shopOperatorBankCode = {$plugin.tx_ptgsaaccounting.shopOperatorBankCode}
+    shopOperatorAccountNo = {$plugin.tx_ptgsaaccounting.shopOperatorBankAccountNo}
+    shopOperatorBankName = {$plugin.tx_ptgsaaccounting.shopOperatorBankName}
+    shopOperatorFinanceAccount = {$plugin.tx_ptgsaaccounting.shopOperatorFinanceAccount}
+}
+
+// settings for pi1 (outstandingItems plugin)
+plugin.tx_ptgsaaccounting_pi1 {
+	shopOperatorGroupUid = {$plugin.tx_ptgsaaccounting.shopOperatorGroupUid}    
+	bookPaymentGroupUid = {$plugin.tx_ptgsaaccounting.bookPaymentGroupUid}    
+	adminInvoicePage = {$plugin.tx_ptgsaaccounting.adminInvoicePage}    
+	adminInvoiceNumberParamname = {$plugin.tx_ptgsaaccounting.adminInvoiceNumberParamname}    
+	adminInvoiceSendButton = {$plugin.tx_ptgsaaccounting.adminInvoiceSendButton}    
+
+    templateFileSearchForm = {$plugin.tx_ptgsaaccounting.templateFileSearchForm}
+    templateFileOutstandingItemList = {$plugin.tx_ptgsaaccounting.templateFileOutstandingItemList}
+    templateFileOutstandingPositions = {$plugin.tx_ptgsaaccounting.templateFileOutstandingPositions}
+    jsOutstandingItems = {$plugin.tx_ptgsaaccounting.jsOutstandingItems}
+    cssFile = {$plugin.tx_ptgsaaccounting.cssFile}
+}
+
+// settings for pi2 (outstandingItems plugin)
+plugin.tx_ptgsaaccounting_pi2 {
+    templateFileMyAccount = {$plugin.tx_ptgsaaccounting.templateFileMyAccount}
+    jsOutstandingItems = {$plugin.tx_ptgsaaccounting.jsOutstandingItems}
+    cssFile = {$plugin.tx_ptgsaaccounting.cssFile}
+    paymentPid = {$plugin.tx_ptgsaaccounting.paymentPid}   
+}
+

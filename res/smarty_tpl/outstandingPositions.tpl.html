@@ -1,0 +1,57 @@
+{* Smarty *}
+{* Detail template for pt_gsaaccounting "Show outstanding Positions for one Invoice"; Author: Dorit Rottner <rottner@punkt.de>, since 2007-03-22 *}
+<br /><br />
+  <div class="tx-pt_gsaaccounting_content">
+<br /><br />
+</div>
+<form name="manage_form" method="post" action="{$fv_action}">
+<table id="outstandingPositions" class="tx-pt_gsaaccounting-tablenosort" cellspacing="1"> 
+<thead> 
+<tr> 
+    <th>{$fl_articleName}</th> 
+    <th>{$fl_relatedDocNo}</th> 
+    <th>{$fl_unitPrice}</th> 
+    <th>{$fl_totalPrice}</th> 
+    <th colspan="2">{$fl_noOutstanding}</th> 
+    <th>{$fl_noToBook}</th> 
+</thead> 
+<tbody>
+ {foreach key=posId from=$posDisplayArr item=row}
+<tr> 
+        <td class="articleName">{$row.articleName}</td>
+        <td>{$row.invoiceDocNo}</td>
+        <td align="right">{$row.unitPrice}
+        <input type="hidden" value="{$row.unitPrice}"   name="{$tx_prefix}[unitPrice_{$row.invoiceUid}_{$row.posNo}]">
+        <input type="hidden"  value="{$row.articleUid}" name="{$tx_prefix}[articleUid_{$row.invoiceUid}_{$row.posNo}]">
+        </td>
+        <td align="right">{$row.totalPrice}</td>
+        <td align="right" class="amountOutstanding">{$row.amountOutstanding}</td>
+        <td align="right" class="noOutstanding">{$row.noOutstanding}</td>
+        <td class="book_it">
+        <input type="text" value="0" id= "bookit_{$row.posNo}" name="{$tx_prefix}[bookit_{$row.invoiceUid}_{$row.posNo}]" size="3">
+        </td>
+</tr>
+{/foreach}
+
+</tbody>
+</table>
+<br /><br />
+  <div class="tx-pt_gsaaccounting_content">
+{if $cond_shipping}     
+        <span class="tx-ptgsaaccounting-txt">
+            <input type="checkbox" class="Check" name="{$tx_prefix}[shipping_{$row.invoiceUid}]" value="{$fv_amountShipping}">
+            &nbsp;&nbsp;{$fv_amountShipping}&nbsp;&nbsp;&nbsp;{$fl_shipping}&nbsp;&nbsp;&nbsp;
+        </span>
+        
+        <br /><br />
+{/if}
+        {$fl_doCredit}&nbsp;<input type="radio" name="{$tx_prefix}[booktype_{$row.invoiceUid}]" value="credit">
+        &nbsp;&nbsp;&nbsp;
+         {$fl_doCancellation}&nbsp;<input type="radio" name="{$tx_prefix}[booktype_{$row.invoiceUid}]" value="cancellation">
+        <br /><br />
+        <input type="submit" name="{$tx_prefix}[credit_Positions]" value="{$bl_creditPositions}" id="doCredit"/>&nbsp;&nbsp;&nbsp;
+        <input type="submit" name="{$tx_prefix}[back_outstandingItemList]" value="{$bl_back}" />
+</div> 
+<input type = "hidden" name="creditPrompt" value="{$fl_bookPrompt}">
+<input type = "hidden" name="msg_errorQuantity" value="{$msg_errorQuantity}">
+</form>

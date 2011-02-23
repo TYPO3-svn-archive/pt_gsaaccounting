@@ -1,0 +1,566 @@
+{* Smarty *}
+{* Default template for pt_gsashop "Order Overview Form"; Author: Rainer Kuhn <kuhn@punkt.de>, since 2006-03-30 *}
+{* Changes added for gsa_accounting; Author: Dorit Rottner <rottner@punkt.de>, since 2007-12-05 *}
+
+{****** HEADER / MESSAGE BOX ******}
+<p class="tx-ptgsashop-pi3-boxheader">{$ll_overview_order_details}</p>
+
+<div class="tx-ptgsashop-pi3-boxborder">
+	
+    <br />
+	{* MESSAGE-BOX (conditional) *}
+	{if $cond_displayMsgBox}
+	    {$msgBox}
+	    <br /><br />
+	{/if}
+
+    <table class="tx-ptgsashop-pi3-tablefixed">
+
+
+{****** ORDER SUMS (NET) ******}   
+{if $cond_displayBillingData}
+
+  {****** ORDER SUMS (NET) ******}
+    {if $cond_isNet}
+    
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tabletopheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_billing_data}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_sum_total}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_sum_articles} {$ll_overview_net}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$orderArticleSum}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_sum_service_charge} {$ll_overview_net}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$orderDispatchSum}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_sum_total} {$ll_overview_net}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$orderSumTotal_net}</span>
+            </td>
+        </tr>
+      {section name=taxline loop=$orderTaxArr}
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_vat} {$orderTaxArr[taxline].taxRate}%</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$orderTaxArr[taxline].taxSubTotal}</span>
+            </td>
+        </tr>
+      {/section}
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_sum_total} {$ll_overview_gross}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+                <br /><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$orderSumTotal_gross}</span>
+            </td>
+        </tr>
+        
+  {****** ORDER SUMS (GROSS) ******}
+    {else}
+    
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tabletopheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_billing_data}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_sum_total}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_sum_articles} {$ll_overview_gross}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$orderArticleSum}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_sum_service_charge} {$ll_overview_gross}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$orderDispatchSum}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_sum_total} {$ll_overview_gross}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$orderSumTotal_gross}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" class="tx-ptgsashop-pi3-tablecell">
+      {section name=taxline loop=$orderTaxArr}
+                <span class="tx-ptgsashop-pi3-txt2">
+                	{$ll_overview_vat} {$orderTaxArr[taxline].taxRate}% [{$currenyCode}]: {$orderTaxArr[taxline].taxSubTotal}
+                </span>
+                <br />
+      {/section}
+                <span class="tx-ptgsashop-pi3-txt2">
+                	{$ll_overview_sum_total} {$ll_overview_net} [{$currenyCode}]: {$orderSumTotal_net}
+                </span>
+                <br /><br />
+            </td>
+        </tr>
+        
+	{/if}
+  {****** Accounting specific stuff ******}
+    {if $cond_creditBalance}
+        <tr>
+            <td class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_creditBalance}</span>
+            </td>
+			{if $cond_doAccountCreditBalance}
+            <td class="tx-ptgsashop-pi3-tableheader" align="right">
+                <form action="order.html?" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="submit" name="tx_ptgsashop_pi3[notAccountCreditBalance]" value="{$ll_overview_notAccountCreditBalance}" class="tx-ptgsashop-pi3-button4" >&nbsp;
+                </form>
+            </td>
+			{else}
+            <td class="tx-ptgsashop-pi3-tableheader" align="right">
+                <form action="order.html?" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="submit" name="tx_ptgsashop_pi3[doAccountCreditBalance]" value="{$ll_overview_doAccountCreditBalance}" class="tx-ptgsashop-pi3-button4" >&nbsp;
+                </form>
+            </td>
+			{/if}
+        </tr>
+        <tr>
+            <td colspan = "2" align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_creditBalanceInfo} </span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+                <span class="tx-ptgsashop-pi3-txt2">{$creditBalance}.</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_accountCreditBalance} </span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2"> {$creditBalanceInvoice}</span>
+                <input type="hidden" name="tx_ptgsashop_pi3[creditBalanceInvoice]" value="{$creditBalanceInvoice}">
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_payment}</span>
+                <span class="tx-ptgsashop-pi3-txt1">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1"> {$paymentAmount}</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell" colspan="2">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_creditBalanceRest} </span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}] </span>
+                <span class="tx-ptgsashop-pi3-txt2">{$creditBalanceRest}</span><br /><br />
+            </td>
+        </tr>
+
+	{/if}
+                
+  {****** ORDER BILLING ADDRESS  ******}
+        <tr>
+            <td class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_billing_addr}</span>
+            </td>
+            <td class="tx-ptgsashop-pi3-tableheader" align="right">
+              {if $cond_allowBillingAddrChange}
+                <form action="{$faction_editBillingAddr}" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="submit" name="{$fname_editBillingAddrButton}" value="{$ll_overview_edit}" class="tx-ptgsashop-pi3-button4" />&nbsp;
+                    <input type="hidden" name="{$fname_hiddenEditBillingAddrBackurl}" value="{$fval_hiddenEditBillingAddrBackurl}" />
+                    <input type="hidden" name="{$fname_hiddenEditBillingAddrAction}" value="{$fval_hiddenEditBillingAddrAction}" />
+                    <input type="hidden" name="{$fname_hiddenEditBillingAddrReturnVar}" value="{$fval_hiddenEditBillingAddrReturnVar}" />
+                    <input type="hidden" name="{$fname_hiddenEditBillingAddrId}" value="{$fval_hiddenEditBillingAddrId}" />
+                </form>
+              {else}
+                &nbsp;
+              {/if}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tablecell">
+                <p class="tx-ptgsashop-pi3-txt2">
+                    {$billingAddr}
+                </p>
+            </td>
+        </tr>
+        
+{/if}
+
+
+
+
+{****** MULTIPLE DELIVERIES USER OPTIONS ******}
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tablecellblind">
+                <br />
+        
+                {if $cond_displayMultDelButton}
+                <form action="{$faction_multDelButton}" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <span class="tx-ptgsashop-pi3-notice">{$ll_overview_multdel_button_prefix}</span>
+                    <input type="submit" name="{$fname_multDelButton}" value="{$ll_overview_multdel_button}" class="tx-ptgsashop-pi3-buttonspecial" />
+                    <span class="tx-ptgsashop-pi3-notice">{$ll_overview_multdel_button_suffix}</span>
+                </form>
+                {/if}
+              
+                {if $cond_displayMultDelMsgBox}
+                {$msgBox_multipleDeliveries}
+                {/if}
+
+                <br />
+            </td>
+        </tr>
+        
+
+     
+{****** DELIVERIES ******}
+    
+  {section name=delivery loop=$delArr}
+      
+      
+    {****** DELIVERY: delivery header ******}
+        
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tabletopheader">
+                <span class="tx-ptgsashop-pi3-txt1">
+                    {$delArr[delivery].ll_overview_delivery_title}
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_delivery_articles}</span>
+            </td>
+            <td class="tx-ptgsashop-pi3-tableheader" align="right">
+                <form action="{$faction_editCart}" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="submit" name="{$fname_editCartButton}" value="{$ll_overview_edit_cart}" class="tx-ptgsashop-pi3-button4" {$onClickAttribute_editCart}>&nbsp;
+                </form>
+            </td>
+        </tr>
+    
+    
+  {****** DELIVERY: article rows ******}    
+  
+      {section name=article loop=$delArr[delivery].artRowArr}
+        
+        <tr>
+            <td class="tx-ptgsashop-pi3-tablecell">
+            
+                <span class="tx-ptgsashop-pi3-txt2">{$delArr[delivery].artRowArr[article].artDescription} </span>
+              {if $delArr[delivery].artRowArr[article].cond_additionalText}
+                <br />
+                <span class="tx-ptgsashop-pi3-txt3">{$delArr[delivery].artRowArr[article].additionalText}</span>
+              {/if}
+                <br />
+              {if $cond_useArticleDeliveryDate}
+                <form action="{$faction_artDelChange}" method="post" class="tx-ptgsashop-pi3-formdefault">
+	                <span class="tx-ptgsashop-pi3-txt3">{$ll_overview_artdel_start}: </span>
+	                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].artRowArr[article].artDelStart}</span>
+                    <input type="hidden" name="{$fname_hiddenArtDelArtId}" value="{$delArr[delivery].artRowArr[article].artId}" />
+                    <input type="hidden" name="{$fname_hiddenArtDelDeliveryKey}" value="{$delArr[delivery].artRowArr[article].deliveryKey}" />
+                    <input type="submit" name="{$fname_artDelChangeButton}" value="{$ll_overview_artdel_edit}" class="tx-ptgsashop-pi3-button4" />
+	                <span class="tx-ptgsashop-pi3-txt3"> - {$ll_overview_artdel_end}: </span>
+	                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].artRowArr[article].artDelEnd}</span>
+                </form>
+              {/if}
+                <span class="tx-ptgsashop-pi3-txt3">{$ll_overview_quantity}: </span> 
+                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].artRowArr[article].artQuantity} </span> 
+                <span class="tx-ptgsashop-pi3-txt3">- {$ll_overview_price}: </span> 
+                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].artRowArr[article].artPrice}</span> 
+                <span class="tx-ptgsashop-pi3-txt3">- {$ll_overview_artno_abbrev}: {$delArr[delivery].artRowArr[article].artNumber}</span>
+              {if $delArr[delivery].artRowArr[article].cond_fixedCost}
+                <br />
+                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].artRowArr[article].artFixedCostTotal}</span>
+                <span class="tx-ptgsashop-pi3-txt3">{$delArr[delivery].artRowArr[article].ll_overview_artfixedcost_info}</span>
+              {/if}
+            
+                {if $delArr[delivery].artRowArr[article].cond_displayDistributeButton}
+                <form action="{$faction_distributeArt}" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="hidden" name="{$fname_hiddenDistrArtId}" value="{$delArr[delivery].artRowArr[article].artId}" />
+                    <input type="submit" name="{$fname_distrArtButton}" value="{$ll_overview_distribute_article}" class="tx-ptgsashop-pi3-buttonspecial" />
+                </form>
+                {/if}
+        
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$delArr[delivery].artRowArr[article].artSubtotal}</span>
+            </td>
+        </tr>
+        
+      {/section}
+      
+  
+  {***** DELIVERY: row for dispatch cost *****}
+    	
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_service_charge} </span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span><br />
+                <span class="tx-ptgsashop-pi3-txt3">{$delArr[delivery].delDispatchCostTypeName}</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">
+                    {$delArr[delivery].delDispatchCost}
+                </span>
+            </td>
+        </tr>
+      
+  
+  {***** DELIVERY (NET): delivery sums total *****}
+    {if $cond_isNet}    
+    
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_delivery_sum} {$ll_overview_net}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].delTotalSum_net}</span>
+            </td>
+        </tr>
+      {section name=deltaxline loop=$delArr[delivery].delTaxArr}
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$ll_overview_vat} {$delArr[delivery].delTaxArr[deltaxline].taxRate}%</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt2">{$delArr[delivery].delTaxArr[deltaxline].taxSubTotal}</span>
+            </td>
+        </tr>
+      {/section}
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_delivery_sum} {$ll_overview_gross}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span>
+                <br /><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].delTotalSum_gross}</span>
+            </td>
+        </tr>
+      
+        
+  {***** DELIVERY (GROSS): delivery sums total *****}
+    {else}    
+    
+        <tr>
+            <td align="left" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_delivery_sum} {$ll_overview_gross}</span>
+                <span class="tx-ptgsashop-pi3-txt2">[{$currenyCode}]</span><br />
+            </td>
+            <td align="right" valign="top" class="tx-ptgsashop-pi3-tablecell">
+                <span class="tx-ptgsashop-pi3-txt1">{$delArr[delivery].delTotalSum_gross}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" class="tx-ptgsashop-pi3-tablecell">
+      {section name=deltaxline loop=$delArr[delivery].delTaxArr}
+                <span class="tx-ptgsashop-pi3-txt2">
+                	{$ll_overview_vat} {$delArr[delivery].delTaxArr[deltaxline].taxRate}%
+                	[{$currenyCode}] {$delArr[delivery].delTaxArr[deltaxline].taxSubTotal}
+               </span>
+               <br />
+      {/section}
+                <span class="tx-ptgsashop-pi3-txt2">
+                	{$ll_overview_delivery_sum} {$ll_overview_net}
+                	[{$currenyCode}] {$delArr[delivery].delTotalSum_net}
+                </span>
+                <br /><br />
+            </td>
+        </tr>
+    
+    {/if}
+	
+	
+  {***** DELIVERY: shipping address *****}
+    {if $delArr[delivery].cond_displayShippingAddr}
+    
+        <tr>
+            <td class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_shipping_addr}</span>
+            </td>
+            <td class="tx-ptgsashop-pi3-tableheader" align="right">
+              {if $cond_allowShippingAddrChange}
+                <form action="{$faction_editShippingAddress}" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="submit" name="{$fname_editShippingAddrButton}" value="{$ll_overview_edit}" class="tx-ptgsashop-pi3-button4" />&nbsp;
+                    <input type="hidden" name="{$fname_hiddenEditShippingAddrBackurl}" value="{$delArr[delivery].fval_hiddenEditShippingAddrBackurl}" />
+                    <input type="hidden" name="{$fname_hiddenEditShippingAddrAction}" value="{$fval_hiddenEditShippingAddrAction}" />
+                    <input type="hidden" name="{$fname_hiddenEditShippingAddrReturnVar}" value="{$fval_hiddenEditShippingAddrReturnVar}" />
+                    <input type="hidden" name="{$fname_hiddenEditShippingAddrId}" value="{$delArr[delivery].fval_hiddenEditShippingAddrId}" />
+                </form>
+              {else}
+                &nbsp;
+              {/if}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tablecell">
+                <p class="tx-ptgsashop-pi3-txt2">
+                    {$delArr[delivery].delAddress}
+                </p>
+            </td>
+        </tr>
+    
+    {/if}
+    
+  {/section}
+    
+{****** /DELIVERIES ******}   
+        
+    </table>
+    <br /><br />
+    
+      
+{***** PAYMENT *****}
+    
+{if $cond_displayPaymentEditBox}
+    
+    <table class="tx-ptgsashop-pi3-tablefixed">
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tabletopheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_payment}</span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tx-ptgsashop-pi3-tableheader">
+                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_paymentMethod}</span>
+            </td>
+            <td class="tx-ptgsashop-pi3-tableheader" align="right">
+                <form action="{$faction_editPayment}" method="post" class="tx-ptgsashop-pi3-formdefault">
+                    <input type="submit" name="{$fname_editPaymentButton}" value="{$ll_overview_edit}" class="tx-ptgsashop-pi3-button4" />&nbsp;
+                    <input type="hidden" name="{$fname_hiddenEditPaymentBackurl}" value="{$fval_hiddenEditPaymentBackurl}" />
+                    <input type="hidden" name="{$fname_hiddenEditPaymentAction}" value="{$fval_hiddenEditPaymentAction}" />
+                    <input type="hidden" name="{$fname_hiddenEditPaymentReturnVar}" value="{$fval_hiddenEditPaymentReturnVar}" />
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tx-ptgsashop-pi3-tablecell">
+                <p class="tx-ptgsashop-pi3-txt2">
+                 {if $cond_paymentDirectDebit}
+                  {if $cond_paymentDdInland}
+                    {$ll_overview_payment_bankAccountNo}: {$bankAccountNo}<br />
+                    {$ll_overview_payment_bankCode}: {$bankCode}<br />
+                  {else}
+                    {$ll_overview_payment_bankBic}: {$bankBic}<br />
+                    {$ll_overview_payment_bankIban}: {$bankIban}<br />
+                  {/if}
+                    {$ll_overview_payment_bankName}: {$bankName}<br />
+                    {$ll_overview_payment_bankAccountHolder}: {$bankAccountHolder}<br />
+                    <br />
+                 {/if}
+                    {$ll_overview_paymentNotice}
+                </p>
+            </td>
+        </tr>
+    </table>
+    <br /><br />
+    
+{/if}
+
+      
+{***** FOOTER / Order Now Button *****}
+    
+    
+    <form action="{$faction_order}" method="post" class="tx-ptgsashop-pi3-formdefault">
+    
+    {if $cond_displayPaymentOptions}
+	    <table class="tx-ptgsashop-pi3-tablefixed">
+	        <tr>
+	            <td colspan="2" class="tx-ptgsashop-pi3-tabletopheader">
+	                <span class="tx-ptgsashop-pi3-txt1">{$ll_overview_payment}</span>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td valign="top" class="tx-ptgsashop-pi3-tablecell">
+	            	<input type="radio" name="{$fname_payment}" value="bt" class="tx-ptgsashop-pi3-input-radio" {if $cond_paymentBtChecked}checked="checked" {/if}/>
+	            	<span class="tx-ptgsashop-pi3-txt3">
+	            		{$ll_overview_paymentMethod_bt}
+	            	</span>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td valign="top" class="tx-ptgsashop-pi3-tablecell">
+	            	<input type="radio" name="{$fname_payment}" value="cc" class="tx-ptgsashop-pi3-input-radio" {if $cond_paymentCcChecked}checked="checked" {/if}/>
+	            	<span class="tx-ptgsashop-pi3-txt3">
+	            		{$ll_overview_paymentMethod_cc}
+	               </span>
+	            </td>
+	        </tr>
+	    </table>
+    	<br />
+	{else}
+	    <input type="hidden" name="{$fname_payment}" value="{$fval_payment}" />
+	{/if}
+    
+	    <table class="tx-ptgsashop-pi3-tablefixed">
+	        <tr>
+	            <td valign="top" class="tx-ptgsashop-pi3-tablecell">
+	            	<input type="checkbox" name="{$fname_checkboxTerms}" value="1" class="tx-ptgsashop-pi3-input-checkbox" {if $cond_checkboxTermsChecked}checked="checked" {/if}/>
+	            </td>
+	            <td class="tx-ptgsashop-pi3-tablecell">
+	            	<span class="tx-ptgsashop-pi3-txt3">
+	            		{$ll_overview_checkbox_terms_prefix}
+	            		<a href="{$link_terms}" target="_blank">{$ll_overview_checkbox_terms}</a>
+	            		{$ll_overview_checkbox_terms_suffix}</span>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td valign="top" class="tx-ptgsashop-pi3-tablecell">
+	            	<input type="checkbox" name="{$fname_checkboxWithdrawal}" value="1" class="tx-ptgsashop-pi3-input-checkbox" {if $cond_checkboxWithdrawalChecked}checked="checked" {/if}/>
+	            </td>
+	            <td class="tx-ptgsashop-pi3-tablecell">
+	            	<span class="tx-ptgsashop-pi3-txt3">
+	            		{$ll_overview_checkbox_withdrawal_prefix}
+	            		<a href="{$link_withdrawal}" target="_blank">{$ll_overview_checkbox_withdrawal}</a>
+	            		{$ll_overview_checkbox_withdrawal_suffix}
+	               </span>
+	            </td>
+	        </tr>
+	    </table>
+    	<br />
+    
+       	<input type="submit" name="{$fname_orderButton}" value="{$ll_overview_order_button}" class="tx-ptgsashop-pi3-button3" />
+    </form>
+    <br />
+
+</div>
+
+{* debug *}

@@ -1,0 +1,122 @@
+********************************************************************************
+DevDoc.txt: Entwicklungs-Notizen zur EXT pt_gsaaccounting
+Autor: Dorit Rottner
+Legend:
+
+FIX: fixes a bug
+CHG: inform about changed items
+ADD: added feature
+RMV: removed Item
+RFT: refactoring / code cleanup
+********************************************************************************
+
+
+ToDo: Stand 24.09.2009
+=======
+
+v0.0.4: (online for Typo3-Konferenz 2009)
++ADD: (ry42) Cancellation
+    +  class.tx_ptgsaaccounting_pi1.php, locallang.xml Additional Radio Buttons fort cancellation
+    +  class.tx_ptgsaaccounting_pi2.php Do not show Invoice if cancelled
+    +  class.tx_ptgsaaccounting_erpDocument.php New Attribute hasCancellation
+    +  class.tx_ptgsaaccounting_transactionHandler.php New Method hasCancellation, set ST as documentType if cancellation
+    +  class.tx_ptgsaaccounting_transactionAccessor.php get ArticleUid for DocumentPositions
+    +  outstandingItemList.tpl.html, outstandingPositions.tpl.html Additional Radio Buttons fort cancellation
+    +  outstandingItemsSort.js Change for ErrorMessage
+    +  ext_emconf.php New Version
++FIX: (ry42) 
+    + class.tx_ptgsaaccounting_transactionAccessor.php Use $this->getTableName('ZAHLUNG') insted of 'Zahlung' in from Clause This cause an error for GSA Tables in Typo3.     
+    + class.tx_ptgsaaccounting_pi2.php, locallang.xml Bugfix: Do not show Inoices in plugin pi2, if there is no valid Customer Number (should not happen a user should not login without gsa customer record)
+    + class.tx_ptgsaaccounting_transactionAccessor.php Reference of wrong constantname case self::CC_CARD to case self::PM_CCARD corrected
+    + class.tx_ptgsaaccounting_pi1.php Missing initialisation of array $doCancellationArr  
+
+v0.0.3: (online für Testserver KBB 24.11.2008)
+---------
++ (ry42) + tx_ptgsaaccounting_paymentModifierCollection: Constructor(): if orderUid > 0 load it from Archive, store it to archive with new parameter orderUid, new method loadFromOrderArchive  
+    + tx_ptgsaaccounting_paymentModifierAccessor: New Accessor class for payment Modifiers 
+    + tx_ptgsaaccounting_paymentModifier, ext_tables.sql, ext_tables.php, tca.php. locallang_db.xml: new attributes addData, addDataType, remove Attribut articleUid, user orderUid instead of orderWrapperUid 
+    ==> WARNING ! If you update the extension you have to update the databse via ExtensionManger (new table for payment Modifiers)
+    class.tx_ptgsaaccounting_paymentModifier:construct(): read from databse if uid is given 
+    + tx_ptgsaaccounting_erpDocument: Bugfix in set_totalDiscountPercent 
++ (ry42) tx_ptgaaccounting_transactionAccessor:selectDocument: Bugfix assert:isMySQLRessource additional Parameter  
+        + tx_ptgaaccounting_p2:getRelatedDocNoLink: selectDocumentsByRelatedErpDocNo name of method changed in gsapdfdocs
++ (ry42) ptgaaccounting_transactionAccessor: Neue Felder GSRAB und GERABTYPE für erpDocument, Neue Methode selectDocument
+    + tx_ptgsaaccounting_erpDocument.php: Neue Attribute totalDiscountPercent und totalDiscountType mit getter und setter
+    + ext_emconf.php: auf Version 0.0.3 erhöht, aktuelle Versionen füt pt_tools, pt_gsashop eingetragen
+    + Neue Klassen class.tx_ptgsaaccounting_paymentModifier.php und class.tx_ptgsaaccounting_paymentModifierCollection.php
++ (ry42) class ptgaaccounting_transactionAccessor: Trace entfernt
+         class ptgaaccounting_p2: Ausgabe von letzten Zahlungseingängen bzw. Abbuchungen nur falls Datum existiert
+         class ptgaaccounting_transactionAccessor: Neue Methode selectPositions, in select und storeErpDocument GESRAB und GEASRABTYPE berücksichtigen
+         Bugfix in selectLastPaymentDate Zahlart über Methode $this->paymentMethodToErp bestimmen 
+         class ptgaaccounting_p2: Bugfix falls kein letztes Abbuchungs bzw. Zahlungsdatum kein converdate aufrufen, sonst assertion
++ (ry42) class ptgaaccounting_p2: Bugfix falls keine offene Posten, Buttons zu offene Posten bzw. Rechnungen nur anzeigen wenn auch offene Posten vorhanden
+         myAccount.tpl.html: Buttons zu offene Posten bzw. Rechnungen nur anzeigen wenn auch offene Posten vorhanden
++ (ry42) class ptgaaccounting_transactionHandler: Prüfe Rechnungsbetrag > 0
+         class ptgaaccounting_transactionAccessor: getOutstandingAmountInvoice über erpDocument anstatt Array
+         class ptgaaccounting_p1: Offene Posten über erpDocument anstatt Array
+         class ptgaaccounting_p2: Mein Konto über erpDocument anstatt Array
+         locallang.xml: fl_gsacustomerNo anstatt fl_gsacustomerno
+         outstandingItemList.tpl.html: fl_gsacustomerNo anstatt fl_gsacustomerno
++ (ry42) class ptgaaccounting_transactionAccessor: selectDueCustomers AUFTRAGOK und GEBUCHT in Abfrage ergänzt
+         selectOutstandingItems documentType umwandlen zu ERP Dokumnettyp 
++ (ry37) tx_ptgsaaccounting_erpDocumentCollection: neue Methode getMaxDunningLevel() hinzugefügt
++ (ry42) class.tx_ptgaaccounting_erpDocument: bugfix in storeSelf()
++ (ry42) class.tx_ptgaaccounting_erpDocument: Neue Property duePeriod mit getter und setter 
+            Neue Methoden getDueDate, getOutstandingAmount, in isDue neuer Parameter useDunning 
+       + class.tx_ptgaaccounting_dueCustomerCollection:  in constructor neuer Parameter useDunning
+       + class ptgaaccounting_transactionAccessor: in selectDueCustomers neuer Parameter useDunning 
++ (ry42) Neue Klassen erpDocument, erpDocumentCollection, dueCustomerCollection
++ (ry96) Instganziierung von smartyAdapter nur noch mit $this, so dass locallang-labels direkt im template gehen
++ (ry42) Neues Plugin für Mein Konto
+	+ jquery über jquery Extension vom repository, nicht mehr eigene Datei
+	+ currency aus shopConfig nicht gsaaccounting Config
+	+ Methoden für Überzahlung
+	+ freie Gutschriften für und Storno für GSA entspricht Guthaben und sofortige Auszahlung 
+	+ Bei Bezahlung Bezahldatum eingeben und Datum in GSA setzen 
+	+ Bei DTAUS Erstellung Datum und Uhrzeit für DTAUS und eigenes Feld mit Gesamtbetrag
+	+ In Bemerkung für Zahlung zusätzlich Buchungsdatum mit übergeben und von DTAUS mit Gesamtbetrag und fronenduser bzw. über Buchung 
+	+ Plugin Offene Posten für adminInterface class.tx_ptgsaaccounting_pi1.php
+	+ New Class class.tx_ptgsaaccounting_dtabuchCollection.php
+	+ New Class class.tx_ptgsaaccounting_gsaTransactionHandler.php
+	+ XCLASS-Fehler im Ext.Mgr. beseitigen
+	+ tx_ptgsaaccounting_dtabuchAccessor::getAmountCancellation(): // TODO: das kann nicht funktionieren, $dtaUid wurde nie gesetzt!
+	+ DocComments in allen Dateien geändert: 
+  statt typ 'object' jetzt immer den Namen des Objekts/Interfaces genannt (für @param und @return)
++ (ry37) ext_emconf.php: pt_gsashop als dependency eingetragen; description, author, author_email geändert
++ (ry37) "GS AUFTRAG"Bereinigung: Labels und Kommentare in div. Dateien geändert
+
+
+
+  
+
+generelles Todo:
+===============
+
+
+
+Doku:
+=====
+- Api als Textvorlage
+
+
+optional/später/Ideen:
+=====================
+
+
+
+Versionserstellung:
+===================
+- deutsche Uebersetzungen vervollständigen!
+- aktuelle Version Ext. erstellen und taggen (CVS)
+- extDevEval laufen lassen (wenn PHP5-tauglich)
+- ggf. Open-Office-Manual-API updaten (Doku)
+
+
+Fragen/Klaerungsbedarf:
+=======================
+- (dr) ab Nummer 307 accountHolder in Name von px_DTABUCH vorher fullName als Name 
+
+
+
+Aenderungen seit v0.x.x (TER): 
+==============================

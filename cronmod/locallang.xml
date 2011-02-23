@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for cronmod &quot;tx_ptgsaaccounting&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="fl_dtaPurpose">Thanks your Klickbilderbox.</label>
+			<label index="fl_dtaPurposeDebit"> - credit. </label>
+			<label index="fl_dtaPurposeCredit"> - refund. </label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="fl_dtaPurpose">Danke Ihre KLICKBILDERBOX.</label>
+			<label index="fl_dtaPurposeDebit"> - Gutschr.</label>
+			<label index="fl_dtaPurposeCredit"> - Rueckerstatt</label>
+
+		</languageKey>
+	</data>
+</T3locallang>

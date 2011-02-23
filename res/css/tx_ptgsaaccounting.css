@@ -1,0 +1,162 @@
+div.tx-ptgsaaccounting-pi1, div.ptgsaaccounting-pi1 {
+	min-width: 850px;	
+	width:expression(document.body.clientWidth < 860? "850px": "auto" );
+}
+.tx_gsaaccountingSummary {
+	clear: both;
+	padding: 0.2em 0.5em;
+
+}
+
+
+div.summaryContainer {
+	line-height: 120%;
+}
+div.tx-ptgsaaccounting-showDetail {
+	clear: both;
+}
+div.tx-ptgsaaccounting-showDetail a {
+	display: inline;
+}
+div.formButtonField { 
+margin-left: 30%;
+margin-top: 0.3em;
+margin-bottom: 0.3em;
+}
+* html div.formButtonField input {
+	margin-left: 3px;
+}
+
+div.tx-ptgsaaccounting_p1 form {
+	margin:0; padding:0;
+}
+
+div.tx-pt_gsaaccounting_content .formRow {
+	//clear: both;
+	padding: 12px;
+}
+div.tx-pt_gsaaccounting_content .Check {
+	margin: 0px;
+}
+
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-txt { font-size:76%; font-weight:normal; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;}
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-txt2 { font-size:76%; font-weight:bold; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;}
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-txt3 { font-size:76%; font-weight:bold; color:#990000;font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;}
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-txt4 { font-size:90%; font-weight:bold; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;}
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col1,
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col2{
+	float: left;
+	width: 180px;
+	z-index: 1;
+}
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col3,
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col4{
+	float: left;
+	width: 200px;
+	z-index: 1;
+}
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col5,
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col6,
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col7{
+	float: left;
+	width: 75px;
+	z-index: 1;
+}
+
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col8,
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col9,
+div.tx-pt_gsaaccounting_content .tx-ptgsaaccounting-col10{
+	float: left;
+	width: 80px;
+	z-index: 1;
+}
+div.pt_gsaaccounting_content .attention {
+	font-weight: bold;
+}
+
+div.tx-ptgsaaccountingCol .tx-ptgsaaccounting-txt1 {
+	font-weight: bold;
+}
+
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	//margin:10px 0pt 15px;
+	font-size: 8pt;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 1px;
+}
+table.tablesorter thead tr .header {
+	//background-image: url(../js/image/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	color: #3D3D3D;
+	font-size: 9pt;
+	cursor: pointer;
+	padding: 2px;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 2px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter tbody tr.payed td {
+	border: 1px solid #90EE90;
+}
+table.tablesorter thead tr .headerSortUp {
+	//background-image: url(../js/image/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	//background-image: url(../js/image/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+
+}
+table.tx-pt_gsaaccounting-tablenosort {
+	font-family:arial;
+	background-color: #CDCDCD;
+	//margin:10px 0pt 15px;
+	font-size: 9pt;
+	//width: 100%;
+	text-align: left;
+}
+table.tx-pt_gsaaccounting-tablenosort thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	color: #3D3D3D;
+	font-size: 9pt;
+	border: 1px solid #FFF;
+	padding: 4px;
+}
+table.tx-pt_gsaaccounting-tablenosort thead tr .header {
+	//background-image: url(../js/image/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	color: #3D3D3D;
+	font-size: 10pt;
+	cursor: pointer;
+	padding: 4px;
+}
+table.tx-pt_gsaaccounting-tablenosort tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tx-pt_gsaaccounting-tablenosort tbody tr.payed td {
+	border: 1px solid #90EE90;
+}
+table.tx-pt_gsaaccounting-tablenosort tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+

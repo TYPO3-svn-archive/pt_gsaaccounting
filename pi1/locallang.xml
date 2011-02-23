@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_ptgsashoplimit_pi1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="bl_back">Cancel</label>
+			<label index="bl_backSearch">New search</label>
+			<label index="bl_book">Book outstanding items</label>
+            <label index="bl_creditPositions">Book Positions</label>
+			<label index="bl_search">Search items</label>
+			<label index="bl_selectAll">Select all</label>
+			<label index="bl_selectAllPayment">Select all payment</label>
+			<label index="bl_selectAllCredit">Select all credit</label>
+			<label index="bl_selectAllCancel">Select all</label>
+			<label index="bl_deselectAll">Deselect All</label>
+			<label index="bl_position">Book by Position</label>
+			<label index="fl_searchText">Searchtext</label>
+			<label index="fl_searchFields">Searchfelder</label>
+			<label index="fl_searchOperator">Operator</label>
+			<label index="fl_searchExact">Exact</label>
+			<label index="fl_searchAll">All</label>
+			<label index="fl_name">Name</label>
+			<label index="fl_relatedDocNo">Invoice Number</label>
+			<label index="fl_date">Date</label>
+			<label index="fl_amountGross">Amount</label>
+			<label index="fl_payed">Payed</label>
+			<label index="fl_credit">Credit Cancell.</label>
+			<label index="fl_payment">Payment</label>
+			<label index="fl_doPayment">Do Payment</label>
+			<label index="fl_doCredit">Do Credit</label>
+            <label index="fl_doCancellation">Do Cancell.</label>
+			<label index="fl_doCancel">Unselect</label>
+			<label index="fl_restok">Rest ok</label>
+			<label index="fl_discount">Discount</label>
+			<label index="fl_paymentMethod">Payment Method</label>
+			<label index="fl_bookDate">Bookdate for payment</label>
+			<label index="fl_bookPrompt">Do you really want to book it? </label>
+			<label index="fl_creditPrompt">Do you really want to credit or cancel it? </label>
+			<label index="fl_articleName">Article name</label>
+			<label index="fl_unitPrice">Unit price</label>
+			<label index="fl_totalPrice">Total price</label>
+			<label index="fl_quantity">Quantity</label>
+			<label index="fl_noCredit">Credits</label>
+			<label index="fl_noToCredit">Number</label>
+            <label index="fl_noCancellation">Cancellations</label>
+            <label index="fl_noOutstanding">Outstanding</label>
+            <label index="fl_noToCancellation">Number</label>
+			<label index="fl_shipping">Shipping</label>
+			<label index="fl_all">All</label>
+			<label index="fl_firstname">Firstname</label>
+			<label index="fl_lastname">Lastname</label>
+            <label index="fl_gsacustomerNo">Customer Number GSA</label>
+			<label index="fl_note1">RestOk only works for Payment or setting an Invoice to Ok. For Creditmemos RestOk is handled like not set.</label>
+
+			<label index="so_and">and</label>
+			<label index="so_or">or</label>
+			<label index="so_not">not</label>
+            <label index="pm_invoice">Bank transfer</label>
+            <label index="pm_debit">Direct debit</label>
+            <label index="pm_creditcard">Creditcard</label>
+            <label index="pm_unknown">Unknown</label>
+			<label index="msg_errorQuantity">Quantity to great. Quantity will is reset to 0.</label>
+			<label index="msg_errorr_wrongDate">Error entering Date. Date has wron Format.</label>
+			<label index="msg_errorr_paymentToMuch">Error entering payment amount. Amount to high. This invoice will not booked as payed:</label>
+			<label index="msg_info_restOkKredit">Rest ok Flag is not considered within Credits. Only Credit has to be done.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="bl_back">Abbrechen</label>
+			<label index="bl_backSearch">Neu suchen</label>
+			<label index="bl_book">Offene Posten verbuchen</label>
+			<label index="bl_creditPositions">Positionen verbuchen</label>
+			<label index="bl_search">Suchen</label>
+			<label index="bl_selectAll">Alle auswählen</label>
+			<label index="bl_selectAllCredit">Alle auswählen gutschreiben</label>
+			<label index="bl_selectAllPayment">Alle auswählen bezahlen</label>
+			<label index="bl_selectAllCancel">Alles aufheben</label>
+			<label index="bl_deselectAll">Auswahl aufheben</label>
+			<label index="bl_position">Positionen verbuchen</label>
+			<label index="fl_searchText">Suchtext</label>
+			<label index="fl_searchFields">Suchfelder</label>
+			<label index="fl_searchOperator">Operator</label>
+			<label index="fl_searchExact">Exakt</label>
+			<label index="fl_searchAll">Alle</label>
+			<label index="fl_relatedDocNo">Rechnungsnr</label>
+			<label index="fl_articleName">Artikelname</label>
+			<label index="fl_name">Name</label>
+			<label index="fl_date">Datum</label>
+			<label index="fl_amountGross">Betrag</label>
+			<label index="fl_payed">Bezahlt</label>
+			<label index="fl_credit">Gutschr.</label>
+			<label index="fl_discount">Storno</label>
+			<label index="fl_payment">Zahlbetrag</label>
+			<label index="fl_doPayment">bezahlen</label>
+			<label index="fl_doCredit">gutschreiben</label>
+            <label index="fl_doCancellation">Storno</label>
+			<label index="fl_doCancel">aufheben</label>
+			<label index="fl_restok">Rest ok</label>
+			<label index="fl_discount">Skonto</label>
+			<label index="fl_paymentMethod">Zahlart</label>
+			<label index="fl_bookDate">Buchungsdatum für Bezahlung</label>
+			<label index="fl_bookPrompt">Wollen Sie wirklich verbuchen? </label>
+			<label index="fl_creditPrompt">Wollen Sie wirklich gutschreiben? </label>
+			<label index="fl_articleName">Artikelname</label>
+			<label index="fl_unitPrice">Einzelpreis</label>
+			<label index="fl_totalPrice">Gesamtpreis</label>
+			<label index="fl_quantity">Menge</label>
+			<label index="fl_noCredit">gutgeschrieben</label>
+            <label index="fl_noCancellation">storniert</label>
+            <label index="fl_noOutstanding">Offen</label>
+			<label index="fl_noToCredit">storniert</label>
+			<label index="fl_shipping">Versandkosten</label>
+			<label index="fl_all">Alle</label>
+			<label index="fl_lastname">Nachname</label>
+            <label index="fl_gsacustomerNo">Kundennummer GSA</label>
+			<label index="fl_note1">Das Rest ok Flag gilt nur für Bezahlungen, falls der Zahlbetrag kleiner als der offene Betrag für diese Rechnung ist. Damit wird der Restbetrag als Skonto verbucht. Für Gutschriften wird das Flag nicht berücksichtigt.</label>
+			<label index="so_and">und</label>
+			<label index="so_or">oder</label>
+			<label index="so_not">nicht</label>
+            <label index="pm_invoice">Rechnung</label>
+            <label index="pm_debit">Abbuchung</label>
+            <label index="pm_creditcard">Kreditkarte</label>
+            <label index="pm_unknown">Unbekannt</label>
+			
+			<label index="msg_errorQuantity">Anzahl zu gross. Anzahl wurde auf 0 gesetzt.</label>
+			<label index="msg_errorr_wrongDate">Fehler bei Eingabe des Datums. Datum hat falsches Format. Erlaubt sind 'm.d.YYYY' oder 'YYYY-m-d'.</label>
+			<label index="msg_errorr_paymentToMuch">Fehler Bei Eingabe des Bezahlbetrags. Der Betrag ist zu hoch. Die folgende Rechnung wurde nicht verbucht:</label>
+			<label index="msg_info_restOkCredit">Das Rest ok Flag wird bei Gutschriften nicht berücksichtigt. Nur die Gutschrift wird verbucht. Um die Rechnung auf erledigt zu setzen, können Sie eine Bezahlung mit 0,00 EUR und Rest Ok Flag erzeugen. Damit wird der Restbetrag als Skonto verbucht.</label>
+		</languageKey>
+	</data>
+</T3locallang>
